@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head th:replace="~{plantillas/plantilla :: head}"></head>
+<body>
+<header th:replace="~{plantillas/plantilla :: header}"></header>
+<main class="container text-center shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <h1>Top busquedas</h1>
+      <div class="col-lg-4">
+        <img src="/image/charizard.jpg" class="card-img-top" width="140" height="300"
+             alt="">
+
+        <h2>Charizard ex Super-Premium Collection</h2>
+        <p >Caja con figura coleccionable y sobres de cartas</p>
+        <p class="mt-auto" ><a class="btn btn-secondary" th:href="@{/spring/articulo}" >Ver coleccionable »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="/image/funko.jpg" class="card-img-top" width="140" height="300"
+             alt="">
+        <h2>One Piece Rides Luffy</h2>
+        <p>Funko Pop Figura De Accion De One Piece Del Personaje Luffy Con Going Merry Exclusivo Comicon</p>
+        <p class="mt-auto" ><a class="btn btn-secondary" th:href="@{/spring/articulo}">Ver coleccionable »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="/image/lego.jpg" class="card-img-top" width="140" height="300"
+             alt="">
+        <h2>The Lord of the Rings: Rivendell</h2>
+        <p>Esta fiel réplica de Rivendell es un proyecto de construcción gratificante que te transportará a la Tierra Media.</p>
+        <p class="mt-auto"><a class="btn btn-secondary" th:href="@{/spring/articulo}">Ver coleccionable »</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+    <h1>Top coleccionistas</h1>
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Classic Car </h2>
+        <p class="lead">Coleccionista especializado en autos a escala antiguos</p>
+        <p class="mt-auto"><a class="btn btn-secondary" th:href="@{/spring/galeria}">Ver colección »</a></p>
+      </div>
+      <div class="col-md-5">
+          <img src="/image/classic.jpg" class="card-img-top"  alt="" />
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Ivan wheels </h2>
+        <p class="lead">Coleccionista y uno de los principales vendedores de Hot Wheels de la Ciudad de México</p>
+        <p class="mt-auto"><a class="btn btn-secondary" th:href="@{/spring/galeria}">Ver colección »</a></p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="/image/hw.jpg" class="card-img-top"  alt="" />
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Mad Hunter </h2>
+        <p class="lead">Madhunter coleccionista de juguetes y quiero que me acompañes en esta gran aventura!</p>
+        <p class="mt-auto"><a class="btn btn-secondary" th:href="@{/spring/galeria}">Ver colección »</a></p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="/image/hunter.jpeg" class="card-img-top"  alt="" />
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+</main>
+<footer th:replace="~{plantillas/plantilla :: footer}"></footer>
+</body>
+</html>

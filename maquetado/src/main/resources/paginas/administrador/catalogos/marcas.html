@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head th:replace="~{plantillas/catalogo :: head}"></head>
+<body>
+<header th:replace="~{plantillas/catalogo :: header}"></header>
+<main class="container text-center shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <h1 th:text="${encabezado}"></h1>
+    <form th:action="@{recibir-marca}" th:object="${marca}" method="post">
+        <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
+            Verifique los siguientes inconvenientes
+            <ul>
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+            </ul>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="form-floating">
+                    <input
+                            th:class="${#fields.hasErrors('nombre')}? 'form-control is-invalid':form-control"
+
+                            type="text" id="nombre"
+                            name="nombre"
+                            th:field="*{nombre}"
+                            placeholder="Marca">
+                    <label for="nombre">Marca:</label>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="form-floating">
+                    <input th:class="${#fields.hasErrors('subMarca')}? 'form-control is-invalid':form-control"
+                           type="text" id="subMarca"
+                           name="subMarca"
+                           th:field="*{subMarca}"
+                           placeholder="Jordan">
+                    <label for="subMarca">Sub Marca</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8">
+            <br/>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+    <h3 th:text="${info}"></h3>
+</main>
+<footer th:replace="~{plantillas/catalogo :: footer}"></footer>
+</body>
+</html>

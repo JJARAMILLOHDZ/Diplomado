@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head th:replace="~{plantillas/plantilla :: head}"></head>
+<body>
+<div class="container text-center">
+
+    <br/>
+    <div class="container py-4 text-center">
+        <div class="d-flex justify-content-center">
+            <img src="/image/colelin.png" alt="Logo" >
+        </div>
+        <br/>
+        <br/>
+        <div class="card by-danger" >
+            <div class="card-body" >
+                <h4 class="card-title">
+                   Felicidades ya eres parte de Colelin!!
+                </h4>
+                <br/>
+                <br/>
+                <h4 class="card-title">
+                    A partir de este momento ya puedes acceder a tu cuenta desde la sección de Login
+                </h4>
+                <br/>
+                <br/>
+                <a class="btn btn-outline-primary" th:href="@{/inicio}">Inicio</a> </li>
+
+                <a class="btn btn-outline-primary" th:href="@{/login/login}">Login</a> </li>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{plantillas/plantilla :: footer}"></footer>
+</body>
+</html>

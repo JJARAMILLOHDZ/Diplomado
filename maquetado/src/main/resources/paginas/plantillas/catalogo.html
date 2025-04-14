@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/iconos/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{/tema/miestilo.css}" rel="stylesheet">
+    <title>COLELIN</title>
+    <link rel="icon" href="/static/image/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a th:href="@{/admin/home}" class="navbar-brand">Inicio</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menu"
+                    aria-controls="menu"
+                    aria-expanded="false"
+                    aria-label="Mostrar / Ocultar Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--Menu-->
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+                    <!--Dropdown-->
+                    <li class="nav-item dropdown">
+                        <a
+                                id="dropdown-pathvariable"
+                                href="#"
+                                class="nav-link dropdown-toggle"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                        >Alta de registros
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown-pathvariable">
+                            <li><a th:href="@{/personas/personas}" class="dropdown-item">Personas</a></li>
+                            <li><a th:href="@{/usuarios/usuarios}" class="dropdown-item">Usuarios</a></li>
+                            <li><a th:href="@{/roles/roles}" class="dropdown-item">Roles</a></li>
+                            <li><a th:href="@{/roles/roles}" class="dropdown-item">Usuario-Role</a></li>
+                            <li><a th:href="@{/usuarios/usuarios}" class="dropdown-item">Usuarios</a></li>
+                            <li><a th:href="@{/personas/personas}" class="dropdown-item">Personas</a></li>
+                            <li><a th:href="@{/colelin/ver-categoria}" class="dropdown-item">Categorias</a></li>
+                            <li><a th:href="@{/colelin/ver-marca}" class="dropdown-item">Marcas</a></li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="navbar-nav ms-auto">
+            <form class="d-flex ms-auto">
+
+
+            </form> <a th:href="@{/login/login}" class="nav-item nav-link">Cerrar sesion</a>
+        </div>
+    </nav>
+</header>
+</body>
+<footer th:fragment="footer">
+
+    <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</footer>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/iconos/bootstrap-icons.css}" rel="stylesheet">
+  <link th:href="@{/tema/miestilo.css}" rel="stylesheet">
+  <title>COLELIN</title>
+  <link rel="icon" href="/static/image/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<header th:fragment="header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a th:href="@{/propiedades}" class="navbar-brand">Inicio</a>
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#menu"
+              aria-controls="menu"
+              aria-expanded="false"
+              aria-label="Mostrar / Ocultar Menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--Menu-->
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+          <li class="nav-item"><a th:href="@{/colelin/categorias}" class="nav-link" >Categorías</a></li>
+          <li class="nav-item"><a th:href="@{/colelin/destacados}" class="nav-link">Destacados</a></li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="navbar-nav ms-auto">
+      <form class="d-flex ms-auto">
+
+
+      </form>
+      <a th:href="@{/login/login}" class="nav-item nav-link">Cerrar sesion</a>
+    </div>
+  </nav>
+
+  <section class="container my-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form>
+            <div class="input-group mb-3">
+              <select class="form-select" style="max-width: 150px;">
+                <option selected>Categorias</option>
+                <option value="1">TCG</option>
+                <option value="2">Figuras</option>
+                <option value="3">Autos</option>
+              </select>
+              <input type="text" class="form-control" placeholder="Search...">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</header>
+</body>
+<footer th:fragment="footer">
+
+  <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</footer>
+</html>

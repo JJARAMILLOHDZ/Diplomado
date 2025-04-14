@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head th:replace="~{plantillas/catalogo :: head}"></head>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .error-message {
+        color: #dc3545;
+        font-size: 0.875em;
+    }
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="bg-light">
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h3 class="text-center mb-0">Registro de Nuevo Usuario</h3>
+        </div>
+        <div class="card-body">
+          <form th:action="@{/crearCuenta/guardar-registro}" th:object="${registroDto}" method="post" class="needs-validation" novalidate>
+
+            <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
+              Verifique los siguientes inconvenientes
+              <ul>
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+              </ul>
+            </div>
+
+            <div class="row">
+              <!-- Columna Izquierda -->
+              <div class="col-md-6">
+                <!-- Usuario -->
+                <div class="mb-3">
+                  <label for="usuario" class="form-label">Nombre de Usuario</label>
+                  <input type="text" class="form-control" id="usuario" th:field="*{usuario}"
+                         required minlength="3" maxlength="45"
+                         pattern="[a-zA-Z0-9]+" title="Solo letras y números">
+                  <div class="invalid-feedback" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></div>
+                  <small class="form-text text-muted">Mínimo 3 caracteres alfanuméricos</small>
+                </div>
+
+                <div class="mb-3">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="password" th:field="*{password}"
+                         required minlength="6"
+                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$">
+                  <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                  <small class="form-text text-muted">Debe contener al menos 6 caracteres, una mayúscula, una minúscula y un número</small>
+                </div>
+
+                <div class="mb-3">
+                  <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                  <input type="password" class="form-control" id="confirmPassword"
+                         required >
+                  <div class="invalid-feedback">Las contraseñas no coinciden</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Correo Electrónico</label>
+                  <input type="email" class="form-control" id="email" th:field="*{email}"
+                         required maxlength="100">
+                  <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <!-- CURP -->
+                <div class="mb-3">
+                  <label for="curp" class="form-label">CURP</label>
+                  <input type="text" class="form-control text-uppercase" id="curp" th:field="*{curp}"
+                         required maxlength="18"
+                         pattern="^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[A-Z0-9]{2}$">
+                  <div class="invalid-feedback" th:if="${#fields.hasErrors('curp')}" th:errors="*{curp}"></div>
+                  <small class="form-text text-muted">Formato: AAAA000000HAAAAAA00</small>
+                </div>
+
+                <div class="mb-3">
+                  <label for="rfc" class="form-label">RFC*</label>
+                  <input type="text" class="form-control text-uppercase" id="rfc" th:field="*{rfc}"
+                         required maxlength="13"
+                         pattern="^[A-Z]{4}[0-9]{6}[A-Z0-9]{3}$">
+                  <div class="invalid-feedback" th:if="${#fields.hasErrors('rfc')}" th:errors="*{rfc}"></div>
+                  <small class="form-text text-muted">Formato: AAAA000000AAA</small>
+                </div>
+
+                <div class="mb-3">
+                  <label for="rolId" class="form-label">Rol</label>
+                  <select class="form-select" id="rolId" th:field="*{rolId}" required>
+                    <option value="" disabled selected>Seleccione un rol</option>
+                    <option th:each="rol : ${roles}"
+                            th:value="${rol.id}"
+                            th:text="${rol.nombre}">
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" th:if="${#fields.hasErrors('rolId')}" th:errors="*{rolId}"></div>
+                </div>
+
+                  <div class="mb-3">
+                    <label for="nombrePersona" class="form-label">Nombre </label>
+                    <input type="text" class="form-control" id="nombrePersona" th:field="*{nombre}"
+                           required minlength="3" maxlength="45">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="apellidosPersona" class="form-label">Apellidos </label>
+                    <input type="text" class="form-control" id="apellidosPersona" th:field="*{apellidos}"
+                           required minlength="3" maxlength="45">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></div>
+                  </div>
+
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+              <button type="submit" class="btn btn-primary btn-lg">Registrar Usuario</button>
+              <a th:href="@{login/login}" class="btn btn-secondary">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+
+  (function() {
+      'use strict';
+      var forms = document.querySelectorAll('.needs-validation');
+
+      var password = document.getElementById('password');
+      var confirmPassword = document.getElementById('confirmPassword');
+
+      if (password && confirmPassword) {
+          confirmPassword.addEventListener('input', function() {
+              if (confirmPassword.value !== password.value) {
+                  confirmPassword.setCustomValidity('Las contraseñas no coinciden');
+              } else {
+                  confirmPassword.setCustomValidity('');
+              }
+          });
+      }
+
+      Array.prototype.slice.call(forms)
+          .forEach(function(form) {
+              form.addEventListener('submit', function(event) {
+                  if (!form.checkValidity()) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                  }
+
+                  form.classList.add('was-validated');
+              }, false);
+          });
+  })();
+
+  document.getElementById('curp')?.addEventListener('input', function(e) {
+      this.value = this.value.toUpperCase();
+  });
+
+  document.getElementById('rfc')?.addEventListener('input', function(e) {
+      this.value = this.value.toUpperCase();
+  });
+</script>
+</body>
+</html>
