@@ -1,6 +1,7 @@
 package dgtic.core.service;
 
 import dgtic.core.model.Persona;
+import dgtic.core.model.Rol;
 import dgtic.core.model.Usuario;
 import dgtic.core.model.UsuarioRol;
 
@@ -13,4 +14,6 @@ public interface UsuarioRolService
     List<UsuarioRol> findByUserId(Integer userId);
     void eliminarPorId(Integer id);
     UsuarioRol findById(Integer id);
+    UsuarioRol save(UsuarioRol usuarioRol);
+    UsuarioRol delete(Integer id);
 }

@@ -18,7 +18,7 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotBlank(message = "La sub marca no puede estar vacía")
+    @NotBlank(message = "El rol no puede venir vacío")
     @Column(nullable = false, length = 50, unique = true)
     private String nombre;
 }

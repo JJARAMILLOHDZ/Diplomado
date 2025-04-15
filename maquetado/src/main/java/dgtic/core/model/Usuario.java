@@ -1,7 +1,9 @@
 package dgtic.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -19,10 +21,12 @@ public class Usuario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotBlank(message = "La sub marca no puede estar vacía")
+    @NotBlank(message = "El nombre de usuario no puede estar vacío")
     @Column(nullable = false, length = 50, unique = true)
     private String nombre;
+    @NotBlank(message = "La contraseña no puede estar vacía")
     @Column(nullable = false, length = 50, unique = true)
+    @Size(min = 5, max = 30)
     private String password;
     @Column(nullable = false, length = 50, unique = true)
     private String correo;
@@ -35,5 +39,6 @@ public class Usuario
 
     @ToString.Exclude
     @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<UsuarioRol> rolesAsignados;
 }

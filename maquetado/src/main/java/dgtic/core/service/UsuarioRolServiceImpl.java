@@ -1,5 +1,6 @@
 package dgtic.core.service;
 
+import dgtic.core.model.Rol;
 import dgtic.core.model.Usuario;
 import dgtic.core.model.UsuarioRol;
 import dgtic.core.repository.UsuarioRolRepository;
@@ -40,5 +41,21 @@ public class UsuarioRolServiceImpl implements UsuarioRolService
     @Override
     public UsuarioRol findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuario-Rol no existe"));
+    }
+
+    @Override
+    public UsuarioRol save(UsuarioRol usuarioRol) {
+        return repository.save(usuarioRol);
+    }
+
+    @Override
+    public UsuarioRol delete(Integer id) {
+        UsuarioRol usuarioRol = repository.findById(id)
+                .orElseThrow(
+                        () -> new RuntimeException("El UsuarioRol no se encuentra registrado")
+                );
+        repository.deleteById(id);
+        return usuarioRol;
+
     }
 }

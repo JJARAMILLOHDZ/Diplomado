@@ -12,4 +12,7 @@ public interface RolService
     List<Rol> getAll();
     void eliminarPorId(Integer id);
     Rol findById(Integer id);
+    Rol update(Integer id, Rol rol);
+    Rol save(Rol rol);
+    Rol delete(Integer id);
 }

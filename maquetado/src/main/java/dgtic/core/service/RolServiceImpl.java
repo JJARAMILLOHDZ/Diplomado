@@ -1,6 +1,7 @@
 package dgtic.core.service;
 
 import dgtic.core.model.Categoria;
+import dgtic.core.model.Persona;
 import dgtic.core.model.Rol;
 import dgtic.core.model.Usuario;
 import dgtic.core.repository.CategoriaRepository;
@@ -38,5 +39,30 @@ public class RolServiceImpl implements RolService
     @Override
     public Rol findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuario no existe"));
+    }
+
+    @Override
+    public Rol save(Rol rol) {
+        return repository.save(rol);
+    }
+
+    @Override
+    public Rol update(Integer id, Rol rol) {
+        return  repository.findById(id)
+                .map(rolExistente -> {
+                    rolExistente.setNombre(rol.getNombre());
+                    return repository.save(rolExistente);
+                }).orElseThrow( () -> new RuntimeException("Rol no encotnrdo ") );
+    }
+
+    @Override
+    public Rol delete(Integer id) {
+        Rol rol = repository.findById(id)
+                .orElseThrow(
+                        () -> new RuntimeException("El rol no se encuentra registrado")
+                );
+        repository.deleteById(id);
+        return rol;
+
     }
 }

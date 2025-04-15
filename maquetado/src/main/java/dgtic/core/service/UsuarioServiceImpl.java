@@ -106,6 +106,40 @@ public class UsuarioServiceImpl implements UsuarioService
     }
 
 
+    @Override
+    public Usuario save(Usuario usuario) {
+        return repository.save(usuario);
+    }
+
+    @Override
+    public Usuario update(Integer id, Usuario usuario) {
+        return  repository.findById(id)
+                .map(usuarioExistente -> {
+                    if( usuario.getNombre() != null  &&  ! usuario.getNombre().isEmpty() ) {
+                        usuarioExistente.setNombre(usuario.getNombre());
+                    }
+                    if( usuario.getCorreo() != null  &&  ! usuario.getCorreo().isEmpty() ) {
+                        usuarioExistente.setCorreo(usuario.getCorreo());
+                    }
+                    if( usuario.getPassword() != null  &&  ! usuario.getPassword().isEmpty() ) {
+                        usuarioExistente.setPassword(usuario.getPassword());
+                    }
+                    return repository.save(usuarioExistente);
+                }).orElseThrow( () -> new RuntimeException("Usuario no encotnrdo ") );
+    }
+
+    @Override
+    public Usuario delete(Integer id) {
+        Usuario usuario = repository.findById(id)
+                .orElseThrow(
+                        () -> new RuntimeException("El Usuario no se encuentra registrado")
+                );
+        repository.deleteById(id);
+        return usuario;
+
+    }
+
+
 
 
 }
